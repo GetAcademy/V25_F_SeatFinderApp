@@ -1,0 +1,41 @@
+@startuml
+
+title SeatFinderApp
+
+class SeatFinderApp{
+  + User User
+  + List<Flight> Flights
+  + void Run()
+  + void ShowAllFlights()
+  + void ChangePreference()
+  + void BookFlight()
+}
+class User{
+  + string Name
+  + SeatClass Preference
+}
+enum SeatClass{
+  + FirstClass
+  + Business
+  + Economy
+}
+class Flight {
+  + string FlightNumber
+  + List<Seat> Seats
+}
+class Seat {
+  + int SeatNumber
+  + SeatClass Class
+  + bool IsTaken
+}
+class SeatAllocator?{
+  + Seat AllocateSeat()
+}
+
+SeatFinderApp -> Flight
+SeatFinderApp -> User
+User -> SeatClass
+Seat -> SeatClass
+Flight -> Seat
+
+@enduml
